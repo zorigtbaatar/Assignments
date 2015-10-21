@@ -1,0 +1,75 @@
+<!--
+Name: Zorigtbaatar Chuluundorj
+Email: zorigtbaatar_chuluundorj@student.uml.edu
+Undergraduate at Umass Lowell, currently taking GUI 1
+Date: October, 20 2015
+Assignment 6: This html creates a completely dynamic table based on parameters
+entered in an html form. After the information has been entered the Javascript file
+is used to dynamically create a table and update it. A css file is used to style
+the webpage
+-->
+
+
+<!-- The header file contains links to the javascript and css files used by this html file-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assignment 6</title>
+        <script type="text/javascript" src = "./js/Assignment6.js"></script>
+        <link rel="stylesheet" type="text/css" href = "./css/Assignment6.css" />
+    </head>
+
+
+
+
+
+    <body>
+
+        <!--Create a form to get user input values-->
+        <!--After acquiring input values javascript function called
+        validate() is called to dynamically update the table with id
+        multiplicationTable-->
+
+        <h1>
+            Assignment 6
+        </h1>
+
+        <form id="inputNumbers" onsubmit="return validate();">
+            Please enter four numbers below and click submit
+            <br>
+
+            <div class = "boxText"> First column value </div>
+            <span class = "box">
+                <input type="number" name="firstColumn">
+            </span>
+            <br>
+
+            <div> Last column value </div>
+            <span>
+                <input type="number" name="lastColumn">
+            </span>
+            <br>
+
+            <div>First row value </div>
+            <span>
+                <input type="number" name="firstRow">
+            </span>
+            <br>
+
+            <div> Last row value </div>
+            <span>
+                <input type="number" name="lastRow">
+            </span>
+            <br>
+
+            <input type="submit" name="submit"> 
+        </form>
+
+        <div>
+            <table id="multiplicationTable">
+            </table>
+        </div>
+
+    </body>
+</html>
