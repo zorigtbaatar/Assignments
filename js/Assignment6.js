@@ -11,12 +11,93 @@
 
 "use strict";
 
-/*This function validates the input entered into form with id inputNumbers
+/* The below function uses jquery to validate the inputs entered
+ * in the form. Furthermore, new methods are added to help validate
+ * the form.
+ */
+
+$(function () {
+
+    /*Test if the value is a whole number*/
+    $.validator.addMethod('wholeNumber', function (value) {
+        if (value % 1 === 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }, 'Please enter an integer');
+
+    /*Tests if the value is more than the parameter provided*/
+    $.validator.addMethod('moreThan', function (value, element, param) {
+        var comp = $(param).val();
+        if (parseInt(value) >= parseInt(comp)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }, '');
+
+    /*Updates the state of the form if the form has no invalid inputs*/
+    $.validator.addMethod('update', function (value, element, param) {
+        $(param).valid();
+        return true;
+    }, '');
+
+
+    /*Validates each of the forms inputs*/
+    $("#inputNumbers").validate({
+        rules: {
+            firstColumn: {
+                required: true,
+                number: true,
+                wholeNumber: true,
+                range: [-9999, 9999],
+                update: '#lastColumn'
+            },
+            lastColumn: {
+                required: true,
+                number: true,
+                wholeNumber: true,
+                range: [-9999, 9999],
+                moreThan: '#firstColumn'
+            },
+            firstRow: {
+                required: true,
+                number: true,
+                wholeNumber: true,
+                range: [-9999, 9999],
+                update: '#lastRow'
+            },
+            lastRow: {
+                required: true,
+                number: true,
+                wholeNumber: true,
+                range: [-9999, 9999],
+                moreThan: '#firstRow'
+            }
+        },
+        messages: {
+            lastColumn: {
+                moreThan: 'This value cannot be less than the value of First Column'
+            },
+            lastRow: {
+                moreThan: 'This value cannot be less than the value of First Row'
+            }
+        },
+        errorElement: "div"
+    });
+});
+
+/*This function calls a function to validate
+ *the inputs entered into form with id inputNumbers
  *and calls functions to update the table with id multiplicationTable
  *with values obtained from multypling the input numbers.
  *
  *returns: This function always returns false
  **/
+
 var validate = function () {
     var tableId = "multiplicationTable", /* id of the table to be updated */
             formId = "inputNumbers", /* id of the form containing input values*/
@@ -25,36 +106,27 @@ var validate = function () {
             lengthOfArray,
             tableNumbers = [];
 
-    /*This function copies the inputs of the form into an array of numbers called tableNumbers*/
-    for (counter = 0, lengthOfArray = form.length; counter < lengthOfArray; counter++) {
-        tableNumbers[counter] = Number(form.elements[counter].value);
-    }
-
-    /*Testing if the user entered 4 inputs*/
-    if (tableNumbers[0] === "" || tableNumbers[1] === ""
-            || tableNumbers[2] === "" || tableNumbers[3] === "") {
-        alert("The number of inputs is not 4!");
+    /*Call jquery validation to validate the form*/
+    /*If the form does not pass the tests, a table will not be printed*/
+    if ($("#inputNumbers").valid() === false) {
         return false;
     }
 
-    /*Checking whether the first column input is more than the last column input*/
-    if (tableNumbers[0] > tableNumbers[1]) {
-        alert("The last column input is less than the first column input!");
+    /*If the form passed the tests, a table will be printed with update values*/
+    else {
+        console.log("Got here");
+        /*This function copies the inputs of the form into an array of numbers called tableNumbers*/
+        for (counter = 0, lengthOfArray = form.length; counter < lengthOfArray; counter++) {
+            tableNumbers[counter] = Number(form.elements[counter].value);
+        }
+
+        /*The inputs of the form passed all the validation tests and will be printed in a multiplication table*/
+        /*Clear the Table of previous value*/
+        clearTable(tableId);
+        /*Print multiplication table*/
+        createTable(tableNumbers, tableId);
         return false;
     }
-
-    /*Checking whether the first row input is more than the last row input*/
-    if (tableNumbers[2] > tableNumbers[3]) {
-        alert("The last row input is less than the first row input!");
-        return false;
-    }
-
-    /*The inputs of the form passed all the validation tests and will be printed in a multiplication table*/
-    /*Clear the Table of previous value*/
-    clearTable(tableId);
-    /*Print multiplication table*/
-    createTable(tableNumbers, tableId);
-    return false;
 };
 
 /*This function erases all the elements of a table*

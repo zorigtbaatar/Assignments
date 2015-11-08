@@ -62,3 +62,10 @@ tr > td:first-child {
     background-color: #000000;
     color: #FFFF00;
 }
+
+/* Sets the color of error messages to red*/
+/* Sets the border color of fields containing invalid inputs to red*/
+.error {
+    border-color: red;
+    color: red;
+}

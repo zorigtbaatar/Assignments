@@ -16,6 +16,11 @@ the webpage
     <head>
         <meta charset="utf-8">
         <title>Assignment 6</title>
+        <!-- the jQuery Validation Plugin is from http://bassistance.de/jquery-plugins/jquery-plugin-validation -->
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+        <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <!-- This is my javascript file used to validate the form-->
         <script type="text/javascript" src = "./js/Assignment6.js"></script>
         <link rel="stylesheet" type="text/css" href = "./css/Assignment6.css" />
     </head>
@@ -37,29 +42,29 @@ the webpage
 
         <form id="inputNumbers" onsubmit="return validate();">
             Please enter four numbers below and click submit
-            <br>
+            
 
             <div class = "boxText"> First column value </div>
             <span class = "box">
-                <input type="number" name="firstColumn">
+                <input id="firstColumn" name="firstColumn">
             </span>
             <br>
 
             <div> Last column value </div>
             <span>
-                <input type="number" name="lastColumn">
+                <input id="lastColumn" name="lastColumn">
             </span>
             <br>
 
             <div>First row value </div>
             <span>
-                <input type="number" name="firstRow">
+                <input id="firstRow" name="firstRow">
             </span>
             <br>
 
             <div> Last row value </div>
             <span>
-                <input type="number" name="lastRow">
+                <input id="lastRow" name="lastRow">
             </span>
             <br>
 
