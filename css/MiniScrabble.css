@@ -1,0 +1,51 @@
+/* 
+ *Name: Zorigtbaatar Chuluundorj
+ *Email: zorigtbaatar_chuluundorj@student.uml.edu
+ *Undergraduate at Umass Lowell, currently taking GUI 1
+ *Date: December, 9 2015
+ *Assignment 9: Mini Scrabble Game
+ *This css file styles a Mini Scrabble Game and is used by MiniScrabble.html
+ */
+
+/*Setting the style for the whole body*/
+body {
+    background-image: url("http://i.stack.imgur.com/jGlzr.png");
+    font-family: "Times New Roman";
+    color: #DCDCDC;
+}
+
+/*Setting the styling for each individual letter*/
+.letter {
+  display: inline-block;
+  padding: 2%;
+  margin: 3%;
+  font-size: 2.5em;
+  color: #F8F8F8 ;
+  background-color: #663300;
+}
+
+/*Styling of an occupied tile*/
+.occupiedtile {
+    margin: 2%;
+    padding: 5%;
+    display: inline-block;
+    background-color: #663300;
+}
+
+/*Setting the styling for each individual tile*/
+.freetile {
+    margin: 2%;
+    padding: 5%;
+    display: inline-block;
+    border:1px solid #DCDCDC;
+}
+
+/*Setting the styling for the rack*/
+/*Rack is were the available letters are located*/
+#rack {
+    background-color: #008B8B;
+    width: 100%;
+    height: 25%;
+    position: fixed; 
+    bottom: 0;
+}
